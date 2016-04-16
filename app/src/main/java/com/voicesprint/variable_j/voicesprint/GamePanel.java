@@ -7,13 +7,11 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.voicesprint.variable_j.voicesprint.MainThread;
-
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
-    public static final int WIDTH = 856;
-    public static final int HEIGHT = 480;
+    public static final int WIDTH = 1712;
+    public static final int HEIGHT = 960;
     private MainThread thread;
     private Background bg;
 
@@ -72,6 +70,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void draw(Canvas canvas)
     {
+        bg.draw(canvas);
+        super.draw(canvas);
         final float scaleFactorX = getWidth()/WIDTH;
         final float scaleFactorY = getHeight()/HEIGHT;
         if(canvas!=null) {
