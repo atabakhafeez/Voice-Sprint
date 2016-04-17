@@ -3,9 +3,6 @@ package com.voicesprint.variable_j.voicesprint;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.util.Log;
-
-import java.nio.ByteBuffer;
 
 /**
  * Created by ashmin on 17/04/16.
@@ -23,13 +20,13 @@ public class Audio
     private AudioRecord recorder = null;
     private Thread recordingThread = null;
 
-    public void Audio()
+    public Audio()
     {
         recorder = new AudioRecord(audioSource, samplingRate, channelConfig, audioFormat, bufferSize);
 
     }
 
-    private void startRecording() {
+    /*public void startRecording() {
 
 
         recorder.startRecording();
@@ -80,4 +77,4 @@ public class Audio
             recordingThread = null;
         }
     }
-}
+*/}

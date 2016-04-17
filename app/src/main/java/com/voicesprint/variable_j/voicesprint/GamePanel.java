@@ -13,6 +13,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public static final int WIDTH = 856;
     public static final int HEIGHT = 480;
     private MainThread thread;
+    private VoiceInput voice;
     private Background bg;
     private Superman superman;
 
@@ -25,6 +26,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
         getHolder().addCallback(this);
 
         thread = new MainThread(getHolder(), this);
+        voice = new VoiceInput();
 
         //make gamePanel focusable so it can handle events
         setFocusable(true);

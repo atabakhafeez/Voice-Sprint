@@ -11,8 +11,12 @@ import android.view.WindowManager;
  * Created by atabakh on 17/04/2016.
  */
 public class GameActivity extends Activity {
+
+    private Audio audio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         //turn title off
@@ -22,6 +26,7 @@ public class GameActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(new GamePanel(this));
+
     }
 
 

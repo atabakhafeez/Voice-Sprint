@@ -12,16 +12,20 @@ public class MainThread extends Thread
     private GamePanel gamePanel;
     private boolean running;
     public static Canvas canvas;
+    private Audio audio;
 
     public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel)
     {
         super();
         this.surfaceHolder = surfaceHolder;
         this.gamePanel = gamePanel;
+        this.audio = new Audio();
     }
     @Override
     public void run()
     {
+        //audio.startRecording();
+
         long startTime;
         long timeMillis;
         long waitTime;
