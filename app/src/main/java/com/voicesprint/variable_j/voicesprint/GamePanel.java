@@ -7,8 +7,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.voicesprint.variable_j.voicesprint.MainThread;
-
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
@@ -16,6 +14,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public static final int HEIGHT = 480;
     private MainThread thread;
     private Background bg;
+    private Superman superman;
 
     public GamePanel(Context context)
     {
@@ -52,6 +51,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder){
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.full_background));
+        superman = new Superman(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 1000, 500);
         bg.setVector(-5);
         //we can safely start the game loop
         thread.setRunning(true);
@@ -72,14 +72,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void draw(Canvas canvas)
     {
-        final float scaleFactorX = getWidth()/WIDTH;
-        final float scaleFactorY = getHeight()/HEIGHT;
+        bg.draw(canvas);
+        super.draw(canvas);
+        final float scaleFactorX = getWidth()/(WIDTH*1.f);
+        final float scaleFactorY = getHeight()/(HEIGHT*1.f);
+
         if(canvas!=null) {
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX, scaleFactorY);
             bg.draw(canvas);
+            superman.draw(canvas);
             canvas.restoreToCount(savedState);
         }
     }
-
 }

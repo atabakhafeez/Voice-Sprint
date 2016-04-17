@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Voice-Sprint.iml" filepath="$PROJECT_DIR$/Voice-Sprint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VoiceSprint.iml" filepath="$PROJECT_DIR$/VoiceSprint.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

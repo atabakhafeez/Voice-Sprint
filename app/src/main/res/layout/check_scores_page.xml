@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <TextView android:id="@+id/TxtHello"
+    <TextView android:id="@+id/TxtScoresHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="\n\n\n\nHeyo Voice Sprinter!!\n\n\n" />
+        android:text="\n\n\n\nHigh Scores!!\n\n\n" />
     <Button android:id="@+id/btnStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
