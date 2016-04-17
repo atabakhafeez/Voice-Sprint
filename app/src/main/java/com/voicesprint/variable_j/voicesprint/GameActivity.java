@@ -1,40 +1,29 @@
 package com.voicesprint.variable_j.voicesprint;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.view.Window;
+import android.view.WindowManager;
 
-public class HomePage extends Activity {
-
+/**
+ * Created by atabakh on 17/04/2016.
+ */
+public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
 
-        Button btnStart = (Button) findViewById(R.id.btnStartGame);
-        btnStart.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent startGameIntent = new Intent(HomePage.this, GameActivity.class);
-                startActivity(startGameIntent);
-            }
-        });
+        //turn title off
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        Button btnEndGame = (Button) findViewById(R.id.btnEndGame);
-        btnEndGame.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent endIntent = new Intent(HomePage.this, Quit.class);
-                endIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                endIntent.putExtra("EXIT", true);
-                startActivity(endIntent);
-            }
-        });
+        //set to full screen
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        setContentView(new GamePanel(this));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

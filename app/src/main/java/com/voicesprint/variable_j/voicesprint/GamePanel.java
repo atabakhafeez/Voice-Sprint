@@ -10,10 +10,11 @@ import android.view.SurfaceView;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
 {
-    public static final int WIDTH = 1712;
-    public static final int HEIGHT = 960;
+    public static final int WIDTH = 856;
+    public static final int HEIGHT = 480;
     private MainThread thread;
     private Background bg;
+    private Superman superman;
 
     public GamePanel(Context context)
     {
@@ -50,6 +51,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder){
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.full_background));
+        superman = new Superman(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 1000, 500);
         bg.setVector(-5);
         //we can safely start the game loop
         thread.setRunning(true);
@@ -72,14 +74,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     {
         bg.draw(canvas);
         super.draw(canvas);
-        final float scaleFactorX = getWidth()/WIDTH;
-        final float scaleFactorY = getHeight()/HEIGHT;
+        final float scaleFactorX = getWidth()/(WIDTH*1.f);
+        final float scaleFactorY = getHeight()/(HEIGHT*1.f);
+
         if(canvas!=null) {
             final int savedState = canvas.save();
             canvas.scale(scaleFactorX, scaleFactorY);
             bg.draw(canvas);
+            superman.draw(canvas);
             canvas.restoreToCount(savedState);
         }
     }
-
 }
