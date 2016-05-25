@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class HomePage extends Activity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class HomePage extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent startGameIntent = new Intent(HomePage.this, GameActivity.class);
+                Intent startGameIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(startGameIntent);
             }
         });
@@ -28,7 +28,7 @@ public class HomePage extends Activity {
         btnEndGame.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent endIntent = new Intent(HomePage.this, Quit.class);
+                Intent endIntent = new Intent(MainActivity.this, Quit.class);
                 endIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 endIntent.putExtra("EXIT", true);
                 startActivity(endIntent);

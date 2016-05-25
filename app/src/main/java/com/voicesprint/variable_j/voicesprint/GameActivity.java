@@ -12,8 +12,6 @@ import android.view.WindowManager;
  */
 public class GameActivity extends Activity {
 
-    private Audio audio;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,6 +24,7 @@ public class GameActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(new GamePanel(this));
+
 
     }
 

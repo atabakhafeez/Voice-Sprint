@@ -2,7 +2,9 @@ package com.voicesprint.variable_j.voicesprint;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 
 /**
  * Created by atabakh on 16/04/2016.
@@ -26,8 +28,18 @@ public class Superman {
 
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas, String pitch) {
+        drawText(canvas, pitch);
         canvas.drawBitmap(spritesheet,x,y,null);
+    }
+
+    public void drawText(Canvas canvas, String pitch) {
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50);
+        canvas.drawText("Pitch: " + pitch, 20, 50, paint);
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
