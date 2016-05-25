@@ -65,7 +65,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder) {
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.full_background));
-        superman = new Superman(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 1000, 500);
+        superman = new Superman(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 1000, 1000);
         bg.setVector(-5);
         //we can safely start the game loop
         thread.setRunning(true);

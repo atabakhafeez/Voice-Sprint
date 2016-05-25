@@ -23,17 +23,6 @@ public class MainActivity extends Activity {
                 startActivity(startGameIntent);
             }
         });
-
-        Button btnEndGame = (Button) findViewById(R.id.btnEndGame);
-        btnEndGame.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent endIntent = new Intent(MainActivity.this, Quit.class);
-                endIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                endIntent.putExtra("EXIT", true);
-                startActivity(endIntent);
-            }
-        });
     }
 
     @Override
