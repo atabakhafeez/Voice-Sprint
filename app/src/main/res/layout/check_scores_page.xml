@@ -2,27 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <TextView android:id="@+id/TxtScoresHello"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TxtScoresHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="\n\n\n\nHigh Scores!!\n\n\n" />
-    <Button android:id="@+id/btnStartGame"
+
+    <Button
+        android:id="@+id/btnStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Ready to screaamm! Lets go..." />
+
     <Button
         android:id="@+id/btnCheckScores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Check High Scores!"/>
+        android:text="Check High Scores!" />
+
     <Button
         android:id="@+id/btnEndGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Quit!"/>
+        android:text="Quit!" />
 </LinearLayout>

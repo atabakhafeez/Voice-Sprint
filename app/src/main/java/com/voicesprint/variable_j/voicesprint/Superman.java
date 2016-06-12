@@ -20,7 +20,7 @@ public class Superman {
         height = h;
         width = w;
         x = GamePanel.WIDTH/2;
-        y = GamePanel.HEIGHT/2;
+        y = GamePanel.HEIGHT/3;
         spritesheet = res;
     }
 
@@ -30,7 +30,7 @@ public class Superman {
 
     public void draw(Canvas canvas, String pitch) {
         drawText(canvas, pitch);
-        canvas.drawBitmap(spritesheet,x,y,null);
+        canvas.drawBitmap(spritesheet, x, y, null);
     }
 
     public void drawText(Canvas canvas, String pitch) {

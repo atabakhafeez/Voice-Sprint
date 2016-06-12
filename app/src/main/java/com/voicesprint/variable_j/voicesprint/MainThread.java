@@ -6,12 +6,12 @@ import android.view.SurfaceHolder;
 
 public class MainThread extends Thread
 {
+    public static Canvas canvas;
     private int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
     private GamePanel gamePanel;
     private boolean running;
-    public static Canvas canvas;
 
     public MainThread(SurfaceHolder surfaceHolder, GamePanel gamePanel)
     {
