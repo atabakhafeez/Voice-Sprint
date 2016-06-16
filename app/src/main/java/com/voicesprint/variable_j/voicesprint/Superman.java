@@ -24,9 +24,7 @@ public class Superman {
         spritesheet = res;
     }
 
-    public void update() {
-
-    }
+    public void update() { }
 
     public void draw(Canvas canvas, String pitch) {
         drawText(canvas, pitch);

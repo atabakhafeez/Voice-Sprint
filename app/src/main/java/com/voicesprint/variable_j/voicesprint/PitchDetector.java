@@ -21,7 +21,7 @@ public class PitchDetector {
         run();
     }
 
-    public void run() {
+    private void run() {
         dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
 
         dispatcher.addAudioProcessor(new PitchProcessor(PitchProcessor.PitchEstimationAlgorithm.FFT_YIN,
@@ -32,6 +32,7 @@ public class PitchDetector {
                                     AudioEvent audioEvent) {
                 pitchInHz = pitchDetectionResult.getPitch();
                 System.out.println("Pitch = " + pitchInHz);
+                //Set vector for speed
                 gamePanel.getBg().setVector((int)(-pitchInHz/10.0));
             }
         }));
