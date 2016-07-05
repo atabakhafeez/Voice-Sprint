@@ -8,8 +8,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * @file MainActivity.java
+ * @brief MainActivity class for the game
+ * @author atabakh
+ * @bug No known bugs
+ */
 public class MainActivity extends Activity {
 
+    /**
+     * Overridden onCreate method
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +35,11 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Overridden onCreateOptionsMenu method
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -32,6 +47,11 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    /**
+     * Overridden onOptionsItemSelected method
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

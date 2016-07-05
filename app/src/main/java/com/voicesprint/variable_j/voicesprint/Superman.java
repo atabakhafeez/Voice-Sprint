@@ -7,30 +7,68 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 
 /**
+ * @file Superman.java
+ * @abrief Superman class which displays the image of the player and also displays the text on the
+ * canvas
+ * @author atabakh
+ * @bug No known bugs.
  * Created by atabakh on 16/04/2016.
  */
 public class Superman {
-    private Bitmap spritesheet;
+    /**
+     * @brief Stores the image of the superman
+     */
+    private Bitmap bitmap;
+
+    /**
+     * @brief x-Coordinate for the position of the image
+     */
     private int x;
+
+    /**
+     * @brief x-Coordinate for the position of the image
+     */
     private int y;
+
+    /**
+     * @brief Height of the image
+     */
     private int height;
+
+    /**
+     * @brief Width of the image
+     */
     private int width;
 
+    /**
+     * @brief Constructor for this class
+     * @param res
+     * @param w
+     * @param h
+     */
     public Superman(Bitmap res, int w, int h) {
         height = h;
         width = w;
         x = GamePanel.WIDTH/2;
         y = GamePanel.HEIGHT/3;
-        spritesheet = res;
+        bitmap = res;
     }
 
-    public void update() { }
-
+    /**
+     * @brief Draws the image of the superman on the canvas
+     * @param canvas
+     * @param pitch
+     */
     public void draw(Canvas canvas, String pitch) {
         drawText(canvas, pitch);
-        canvas.drawBitmap(spritesheet, x, y, null);
+        canvas.drawBitmap(bitmap, x, y, null);
     }
 
+    /**
+     * @brief Draws text showing pitch on the screen
+     * @param canvas
+     * @param pitch
+     */
     public void drawText(Canvas canvas, String pitch) {
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
@@ -40,17 +78,24 @@ public class Superman {
         canvas.drawText("Pitch: " + pitch, 20, 50, paint);
     }
 
-    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+    /**
+     * @brief Resizes the bitmap
+     * @param bm
+     * @param newWidth
+     * @param newHeight
+     * @return Resized bitmap image
+     */
+    private Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
+        // Create a matrix for the manipulation
         Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
+        // Resize the bitmap
         matrix.postScale(scaleWidth, scaleHeight);
 
-        // "RECREATE" THE NEW BITMAP
+        // "Recreate" the new bitmap
         Bitmap resizedBitmap = Bitmap.createBitmap(
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
@@ -58,3 +103,4 @@ public class Superman {
     }
 
 }
+
