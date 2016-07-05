@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * @file GameActivity
+ * @file GameActivity.java
  * @brief Class that handles activity for the game
  * @author atabakh
  * @bugs No known bugs

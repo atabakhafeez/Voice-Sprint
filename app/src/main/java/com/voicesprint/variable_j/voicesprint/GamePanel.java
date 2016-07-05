@@ -8,7 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * @file GamePanel.Java
+ * @file GamePanel.java
  * @brief GamePanel Class that extends SurfaceView and implements SurfaceHolder.Callback. This class
  * acts as the view and functionality of the game
  * @author atabakh
