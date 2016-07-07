@@ -4,34 +4,32 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 /**
- * @file Background.java
- * @brief Background class to create illusion of moving background
+ * Background class to create illusion of moving background
  * @author atabakh
- * @Bugs No known bugs
  */
 public class Background {
     /**
-     * @brief The image for the background
+     * The image for the background
      */
     private Bitmap image;
 
     /**
-     * @brief The x-coordinate for the image where it is placed on the screen
+     * The x-coordinate for the image where it is placed on the screen
      */
     private int x;
 
     /**
-     * @brief The y-coordinate for the image where it is placed on the screen
+     * The y-coordinate for the image where it is placed on the screen
      */
     private int y;
 
     /**
-     * @brief The vector which determines the speed of movement of the image
+     * The vector which determines the speed of movement of the image
      */
     private int dx;
 
     /**
-     * @brief The constructor the class
+     * The constructor the class
      * @param res
      */
     public Background(Bitmap res) {
@@ -39,7 +37,7 @@ public class Background {
     }
 
     /**
-     * @brief Updated the x-coordinate value to move the image to the right in accordance with the vector.
+     * Updated the x-coordinate value to move the image to the right in accordance with the vector.
      */
     public void update() {
         x += dx;
@@ -50,7 +48,7 @@ public class Background {
     }
 
     /**
-     * @brief Draw the background images on the canvas
+     * Draw the background images on the canvas
      * @param canvas
      */
     public void draw(Canvas canvas) {
@@ -63,7 +61,7 @@ public class Background {
     }
 
     /**
-     * @brief Sets vector for speed of background image movement
+     * Sets vector for speed of background image movement
      * @param dx
      */
     public void setVector(int dx) {

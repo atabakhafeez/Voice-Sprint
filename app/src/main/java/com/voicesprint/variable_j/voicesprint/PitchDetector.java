@@ -8,41 +8,39 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
 
 /**
- * @file PitchDetector.java
- * @brief Class that takes audio input from mic and calculates the pitch of the input.
+ * Class that takes audio input from mic and calculates the pitch of the input.
  * @author atabakh
- * @bug No known bugs.
  * Created by atabakh on 25/05/2016.
  */
 public class PitchDetector {
 
     /**
-     * @brief The pitch in Hz
+     * The pitch in Hz
      */
     private float pitchInHz;
 
     /**
-     * @brief The audio dispatcher which gets the sound from the microphone
+     * The audio dispatcher which gets the sound from the microphone
      */
     private AudioDispatcher dispatcher;
 
     /**
-     * @brief The gamepanel which this PitchDetector class instance is connected to
+     * The gamepanel which this PitchDetector class instance is connected to
      */
     private GamePanel gamePanel;
 
     /**
-     * @brief The sum of the detected pitches for the high score functionality
+     * The sum of the detected pitches for the high score functionality
      */
     private float pitchSum;
 
     /**
-     * @brief Boolean to check whether there is any input
+     * Boolean to check whether there is any input
      */
     private boolean noSound;
 
     /**
-     * @brief Constructor for PitchDetector
+     * Constructor for PitchDetector
      * @param gamePanel
      */
     public PitchDetector(GamePanel gamePanel) {
@@ -52,7 +50,7 @@ public class PitchDetector {
     }
 
     /**
-     * @brief Runs the PitchDetector
+     * Runs the PitchDetector
      */
     private void run() {
         dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
@@ -76,17 +74,17 @@ public class PitchDetector {
     }
 
     /**
-     * @brief Stops the AudioDispatcher from listening and processing sound input
+     * Stops the AudioDispatcher from listening and processing sound input
      */
     public void stop() {
         dispatcher.stop();
     }
 
     /**
-     * @brief Getter for pitch in string format for displaying on the screen
-     * @return pitch in string format
+     * Getter for pitch
+     * @return pitch
      */
-    public String getPitchInString () {
-        return Float.toString(pitchInHz);
+    public float getPitchInHz () {
+        return pitchInHz;
     }
 }

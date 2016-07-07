@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * @file MainActivity.java
- * @brief MainActivity class for the game
+ * MainActivity class for the game
  * @author atabakh
- * @bug No known bugs
  */
 public class MainActivity extends Activity {
 

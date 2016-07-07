@@ -8,45 +8,43 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 /**
- * @file GamePanel.java
- * @brief GamePanel Class that extends SurfaceView and implements SurfaceHolder.Callback. This class
+ * GamePanel Class that extends SurfaceView and implements SurfaceHolder.Callback. This class
  * acts as the view and functionality of the game
  * @author atabakh
- * @Bugs No known bugs
  */
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     /**
-     * @breif Width of the background image
+     * Width of the background image
      */
     public static final int WIDTH = 856;
 
     /**
-     * @brief Height of the background image
+     * Height of the background image
      */
     public static final int HEIGHT = 480;
 
     /**
-     * @brief The thread instance which is run for the background to move
+     * The thread instance which is run for the background to move
      */
     private MainThread thread;
 
     /**
-     * @brief Instance for the Background class
+     * Instance for the Background class
      */
     private Background bg;
 
     /**
-     * @brief Instance for the Superman class
+     * Instance for the Player class
      */
-    private Superman superman;
+    private Player player;
 
     /**
-     * @brief Instance for the PitchDetector class
+     * Instance for the PitchDetector class
      */
     private PitchDetector pitchDetector;
 
     /**
-     * @brief Constructor for the GamePanel class
+     * Constructor for the GamePanel class
      * @param context
      */
     public GamePanel(Context context) {
@@ -61,7 +59,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
-     * @brief Overridden surfaceChanged method for the class
+     * Overridden surfaceChanged method for the class
      * @param holder
      * @param format
      * @param width
@@ -71,7 +69,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
 
     /**
-     * @brief Overridden surfaceDestroyed method for the class
+     * Overridden surfaceDestroyed method for the class
      * @param holder
      */
     @Override
@@ -94,14 +92,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
-     * @brief Overridden surfaceCreated method for the class
+     * Overridden surfaceCreated method for the class
      * @param holder
      */
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.full_background));
-        superman = new Superman(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 0, 0);
+        player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.superman), 0, 0);
         //set default vector speed
         //TODO: Check if we need this
         bg.setVector(-5);
@@ -114,7 +112,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
-     * @brief Overridden onTouchEvent for the class
+     * Overridden onTouchEvent for the class
      * @param event
      * @return super.onTouchEvent(event)
      */
@@ -125,12 +123,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     /**
-     * @brief Method that updates the background images
+     * Method that updates the background images
      */
     public void update() { bg.update(); }
 
     /**
-     * @brief Overridden draw method for the class
+     * Overridden draw method for the class
      * @param canvas
      */
     @Override
@@ -146,13 +144,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             canvas.scale(scaleFactorX, scaleFactorY);
             bg.draw(canvas);
             //draw superman and frequency on the background
-            superman.draw(canvas, pitchDetector.getPitchInString());
+            player.draw(canvas, pitchDetector.getPitchInHz());
             canvas.restoreToCount(savedState);
         }
     }
 
     /**
-     * @brief Getter for the Background instance
+     * Getter for the Background instance
      * @return Background instance of the class
      */
     public Background getBg() {

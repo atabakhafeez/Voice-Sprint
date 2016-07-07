@@ -8,17 +8,15 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * @file GameActivity.java
- * @brief Class that handles activity for the game
+ * Class that handles activity for the game
  * @author atabakh
- * @bugs No known bugs
  *
  * Created by atabakh on 17/04/2016.
  */
 public class GameActivity extends Activity {
 
     /**
-     * @brief Overridden onCreate method for the Activity
+     * Overridden onCreate method for the Activity
      * @param savedInstanceState
      */
     @Override
@@ -36,7 +34,7 @@ public class GameActivity extends Activity {
     }
 
     /**
-     * @brief Overridden onCreateOptionsMenu method
+     * Overridden onCreateOptionsMenu method
      * @param menu
      * @return true
      */
@@ -48,7 +46,7 @@ public class GameActivity extends Activity {
     }
 
     /**
-     * @brief Overridden onOptionsItemSelected method
+     * Overridden onOptionsItemSelected method
      * @param item
      * @return super.onOptionsItemSelected(item)
      */
