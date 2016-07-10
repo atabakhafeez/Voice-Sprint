@@ -3,38 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/fragment_container">
 
-    <TextView
-        android:id="@+id/TxtHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="\n\nHeyo Voice Sprinter!!\n" />
+    <!--<TextView-->
+        <!--android:id="@+id/TxtHello"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:textSize="20dp"-->
+        <!--android:textColor="@color/colorPrimaryDark"-->
+        <!--android:text="\n\nHeyo Voice Sprinter!!\n" />-->
 
-    <TextSwitcher
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textSwitcher"
-        android:layout_gravity="center_horizontal" />
+    <!--<TextSwitcher-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textSwitcher"-->
+        <!--android:layout_gravity="center_horizontal" />-->
 
-    <Button
-        android:id="@+id/btnStartGame"
-        android:layout_width="299dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Ready to screaamm! Lets go..."
-        android:layout_weight="0.08" />
+    <!--<Button-->
+        <!--android:id="@+id/btnStartGame"-->
+        <!--android:layout_width="299dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="Ready to screaamm! Lets go..."-->
+        <!--android:layout_weight="0.08" />-->
 
-    <Button
-        android:id="@+id/btnCheckScores"
-        android:layout_width="221dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Check High Scores!"
-        android:layout_weight="0.07"
-        android:allowUndo="false" />
+    <!--<Button-->
+        <!--android:id="@+id/btnCheckScores"-->
+        <!--android:layout_width="221dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:text="Check High Scores!"-->
+        <!--android:layout_weight="0.07"-->
+        <!--android:allowUndo="false" />-->
 
 </LinearLayout>
