@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 /**
  * MainActivity class for the game
@@ -27,15 +25,19 @@ public class MainActivity extends FragmentActivity implements
         setContentView(R.layout.activity_home_page);
 
         gameFragment = GameFragment.newInstance();
+        homeMenuFragment = HomeMenuFragment.newInstance();
 
-        Button btnStart = (Button) findViewById(R.id.btnStartGame);
-        btnStart.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
-                        gameFragment).commit();
-            }
-        });
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+                homeMenuFragment).commit();
+//
+//        Button btnStart = (Button) findViewById(R.id.btnPlayGame);
+//        btnStart.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+//                        gameFragment).commit();
+//            }
+//        });
     }
 
     /**
@@ -73,5 +75,11 @@ public class MainActivity extends FragmentActivity implements
     @Override
     public void onGameOver() {
 
+    }
+
+    @Override
+    public void onGameStartButtonPressed() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                gameFragment).addToBackStack(null).commit();
     }
 }
