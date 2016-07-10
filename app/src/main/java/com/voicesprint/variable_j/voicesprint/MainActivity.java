@@ -1,7 +1,6 @@
 package com.voicesprint.variable_j.voicesprint;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +26,7 @@ public class MainActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent startGameIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(startGameIntent);
+
             }
         });
     }
