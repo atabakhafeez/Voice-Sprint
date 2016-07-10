@@ -14,6 +14,8 @@ import be.tarsos.dsp.pitch.PitchProcessor;
  */
 public class PitchDetector {
 
+    static final float MOVEMENT_SPEED_PARAM = (float) 50.0;
+
     /**
      * The pitch in Hz
      */
@@ -67,7 +69,7 @@ public class PitchDetector {
 
                 //Set vector for speed
                 //TODO: Refactor to remove coupling
-                gamePanel.getBg().setVector((int)(-pitchInHz/10.0));
+                gamePanel.getBg().setVector((int)(-pitchInHz/MOVEMENT_SPEED_PARAM));
             }
         }));
         new Thread(dispatcher, "Audio Dispatcher").start();
