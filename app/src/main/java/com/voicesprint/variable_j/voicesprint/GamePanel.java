@@ -43,6 +43,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
      */
     private PitchDetector pitchDetector;
 
+    Listener mListener = null;
+
+    public interface Listener {
+//        void onVoiceInputStopped(float finalScore);
+        void onPitchDetected(float pitch, float pitchSum);
+    }
+
     /**
      * Constructor for the GamePanel class
      * @param context
@@ -145,6 +152,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             bg.draw(canvas);
             //draw superman and frequency on the background
             player.draw(canvas, pitchDetector.getPitchInHz());
+            mListener.onPitchDetected(pitchDetector.getPitchInHz(), pitchDetector.getPitchSum());
             canvas.restoreToCount(savedState);
         }
     }
@@ -155,5 +163,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
      */
     public Background getBg() {
         return bg;
+    }
+
+    public void setListener(Listener l) {
+        mListener = l;
     }
 }

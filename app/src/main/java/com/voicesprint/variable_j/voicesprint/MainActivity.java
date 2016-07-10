@@ -73,8 +73,9 @@ public class MainActivity extends FragmentActivity implements
     }
 
     @Override
-    public void onGameOver() {
-
+    public void onGameOver(float finalScore) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                homeMenuFragment).commit();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.voicesprint.variable_j.voicesprint;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,30 +12,24 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GameFragment.OnFragmentInteractionListener} interface
+ * {@link ScoreFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GameFragment#newInstance} factory method to
+ * Use the {@link ScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GameFragment extends Fragment implements GamePanel.Listener {
+public class ScoreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
+    private static final String FINAL_SCORE = "Final Score";
 //    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-//    private String mParam1;
+    private String final_score;
 //    private String mParam2;
-
-    static float MINIMUM_PITCH = 100;
-
-    boolean scoreSumStarted;
-
-    private float finalScore;
 
     private OnFragmentInteractionListener mListener;
 
-    public GameFragment() {
+    public ScoreFragment() {
         // Required empty public constructor
     }
 
@@ -42,43 +37,38 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment GameFragment.
+     * @return A new instance of fragment ScoreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GameFragment newInstance() {
-//        GameFragment fragment = new GameFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args)
-        return new GameFragment();
+    public static ScoreFragment newInstance(String score) {
+        ScoreFragment fragment = new ScoreFragment();
+        Bundle args = new Bundle();
+        args.putString(FINAL_SCORE, score);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+            final_score = getArguments().getString(FINAL_SCORE);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        GamePanel gamePanel = new GamePanel(getContext());
-        gamePanel.setListener(this);
-        scoreSumStarted = false;
-        return gamePanel;
+        return inflater.inflate(R.layout.fragment_score, container, false);
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed() {
-//        if (mListener != null) {
-//            mListener.onGameOver();
-//        }
-//    }
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onScoreScreenDismissed();
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -97,17 +87,6 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
         mListener = null;
     }
 
-    @Override
-    public void onPitchDetected(float pitch, float pitchSum) {
-        if (pitch >= MINIMUM_PITCH) {
-            scoreSumStarted = true;
-        }
-
-        if (scoreSumStarted && pitch < MINIMUM_PITCH) {
-            mListener.onGameOver(pitchSum);
-        }
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -119,7 +98,6 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onGameOver(float finalScore);
+        void onScoreScreenDismissed();
     }
 }

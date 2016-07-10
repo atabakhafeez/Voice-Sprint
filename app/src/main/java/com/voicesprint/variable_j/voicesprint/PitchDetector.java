@@ -16,6 +16,8 @@ public class PitchDetector {
 
     static final float MOVEMENT_SPEED_PARAM = (float) 50.0;
 
+    static final float MINIMUM_PITCH = 100;
+
     /**
      * The pitch in Hz
      */
@@ -41,6 +43,8 @@ public class PitchDetector {
      */
     private boolean noSound;
 
+    boolean scoreSumStarted;
+
     /**
      * Constructor for PitchDetector
      * @param gamePanel
@@ -48,6 +52,7 @@ public class PitchDetector {
     public PitchDetector(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         pitchSum = 0;
+        scoreSumStarted = false;
         run();
     }
 
@@ -64,8 +69,13 @@ public class PitchDetector {
             public void handlePitch(PitchDetectionResult pitchDetectionResult,
                                     AudioEvent audioEvent) {
                 pitchInHz = pitchDetectionResult.getPitch();
+                if (pitchInHz >= MINIMUM_PITCH) {
+                    scoreSumStarted = true;
+                }
+                if (scoreSumStarted) {
+                    pitchSum += pitchInHz;
+                }
                 System.out.println("Pitch = " + pitchInHz);
-                pitchSum += 0;
 
                 //Set vector for speed
                 //TODO: Refactor to remove coupling
@@ -89,4 +99,6 @@ public class PitchDetector {
     public float getPitchInHz () {
         return pitchInHz;
     }
+
+    public float getPitchSum() { return pitchSum; }
 }
