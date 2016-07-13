@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.voicesprint.variable_j.voicesprint"
-        minSdkVersion 8
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -23,9 +23,10 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile files('libs/TarsosDSP-Android-2.0-bin.jar')
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
 }
+
 
 
 

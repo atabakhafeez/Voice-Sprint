@@ -2,6 +2,7 @@ package com.voicesprint.variable_j.voicesprint;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -10,10 +11,12 @@ import android.view.MenuItem;
  * @author atabakh
  */
 public class MainActivity extends FragmentActivity implements
-        GameFragment.OnFragmentInteractionListener, HomeMenuFragment.OnFragmentInteractionListener {
+        GameFragment.OnFragmentInteractionListener, HomeMenuFragment.OnFragmentInteractionListener,
+HighScoreFragment.OnFragmentInteractionListener {
 
     GameFragment gameFragment;
     HomeMenuFragment homeMenuFragment;
+    HighScoreFragment highScoreFragment;
 
     /**
      * Overridden onCreate method
@@ -74,13 +77,21 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onGameOver(float finalScore) {
+        highScoreFragment = HighScoreFragment.newInstance(Float.toString(finalScore));
+        Log.d("MAIN_ACTIVITY", "score fragment");
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                homeMenuFragment).commit();
+                highScoreFragment).commit();
     }
 
     @Override
     public void onGameStartButtonPressed() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 gameFragment).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onScoreScreenDismissed() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                homeMenuFragment).addToBackStack(null).commit();
     }
 }
