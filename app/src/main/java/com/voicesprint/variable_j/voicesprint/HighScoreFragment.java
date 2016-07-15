@@ -1,6 +1,7 @@
 package com.voicesprint.variable_j.voicesprint;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,16 +19,18 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HighScoreFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String FINAL_SCORE = "Final Score";
-//    private static final String ARG_PARAM2 = "param2";
+    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
 
-    // TODO: Rename and change types of parameters
-    private String final_score;
-//    private String mParam2;
+    // the fragment initialization parameters
 
     private OnFragmentInteractionListener mListener;
+
+    private float firstUserScore;
+    private float secondUserScore;
+    private float thirdUserScore;
+    private float[] highScores = new float[] {
+            firstUserScore, secondUserScore, thirdUserScore
+    };
 
     public HighScoreFragment() {
         // Required empty public constructor
@@ -40,27 +43,36 @@ public class HighScoreFragment extends Fragment {
      * @return A new instance of fragment ScoreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HighScoreFragment newInstance(String score) {
-        HighScoreFragment fragment = new HighScoreFragment();
-        Bundle args = new Bundle();
-        args.putString(FINAL_SCORE, score);
-        fragment.setArguments(args);
-        return fragment;
+    public static HighScoreFragment newInstance() {
+//        HighScoreFragment fragment = new HighScoreFragment();
+//        Bundle args = new Bundle();
+//        args.putString(FINAL_SCORE, score);
+//        fragment.setArguments(args);
+        return new HighScoreFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            final_score = getArguments().getString(FINAL_SCORE);
-        }
+//        if (getArguments() != null) {
+//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_high_score, container, false);
+        View v = inflater.inflate(R.layout.fragment_high_score, container, false);
+        updateHighScoresView();
+        return v;
+    }
+
+    private void updateHighScoresView() {
+        SharedPreferences sharedPrefHighScore = getContext().getSharedPreferences(HIGH_SCORE_PREFS,
+                Context.MODE_PRIVATE);
+        for (int i = 1; i <= highScores.length; i++) {
+            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

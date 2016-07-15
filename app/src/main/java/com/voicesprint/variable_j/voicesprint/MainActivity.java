@@ -1,8 +1,9 @@
 package com.voicesprint.variable_j.voicesprint;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,11 +13,26 @@ import android.view.MenuItem;
  */
 public class MainActivity extends FragmentActivity implements
         GameFragment.OnFragmentInteractionListener, HomeMenuFragment.OnFragmentInteractionListener,
-HighScoreFragment.OnFragmentInteractionListener {
+HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentInteractionListener {
+
+    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+
+    private static final String HIGH_SCORE_STRING_SET = "HighScore";
+
+    private static float finalScore;
+//
+//    private float firstUserScore;
+//    private float secondUserScore;
+//    private float thirdUserScore;
+
+    private static float[] highScores = new float[3];
+    private static String[] highScoreNames = new String[3];
+
 
     GameFragment gameFragment;
     HomeMenuFragment homeMenuFragment;
     HighScoreFragment highScoreFragment;
+    PlayerScoreFragment playerScoreFragment;
 
     /**
      * Overridden onCreate method
@@ -27,8 +43,17 @@ HighScoreFragment.OnFragmentInteractionListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
+        SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
+                Context.MODE_PRIVATE);
+        for (int i = 1; i <= highScores.length; i++) {
+            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
+            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
+        }
+
         gameFragment = GameFragment.newInstance();
         homeMenuFragment = HomeMenuFragment.newInstance();
+        highScoreFragment.newInstance();
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                 homeMenuFragment).commit();
@@ -68,11 +93,37 @@ HighScoreFragment.OnFragmentInteractionListener {
 
     @Override
     public void onGameOver(float finalScore) {
-        highScoreFragment = HighScoreFragment.newInstance(Float.toString(finalScore));
-        Log.d("MAIN_ACTIVITY", "score fragment");
+        this.finalScore = finalScore;
+        boolean high_score_scored = updateScores();
+
+        playerScoreFragment = PlayerScoreFragment.newInstance(finalScore, high_score_scored);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                highScoreFragment).commit();
+                playerScoreFragment).commit();
     }
+
+    private boolean updateScores() {
+        boolean score_will_update = false;
+        int position = 0;
+        for (int i = 1; i <= highScores.length; i++) {
+            if (finalScore <= highScores[i - 1]) {
+                break;
+            }
+            if (finalScore > highScores[i - 1]) {
+                position = i;
+                score_will_update = true;
+                break;
+            }
+        }
+        if (score_will_update) {
+            SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
+                    Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPrefHighScore.edit();
+            editor.putFloat("position" + position, finalScore);
+            editor.commit();
+        }
+        return score_will_update;
+    }
+
 
     @Override
     public void onGameStartButtonPressed() {
@@ -83,6 +134,12 @@ HighScoreFragment.OnFragmentInteractionListener {
     @Override
     public void onScoreScreenDismissed() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                homeMenuFragment).addToBackStack(null).commit();
+                homeMenuFragment).commit();
+    }
+
+    @Override
+    public void onHighScoreButtonPressed() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                highScoreFragment).commit();
     }
 }

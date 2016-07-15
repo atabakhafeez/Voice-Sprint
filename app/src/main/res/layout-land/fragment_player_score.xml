@@ -8,10 +8,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/player_score_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/player_score_message"
         android:text="Congratulations!!"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
@@ -31,9 +31,9 @@
             android:textColor="@color/colorAccent"/>
 
         <TextView
+            android:id="@+id/score_display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/score_display"
             android:textSize="60sp"
             android:text="50000"
             android:textColor="@color/colorPrimary"/>
@@ -45,12 +45,12 @@
         android:layout_height="match_parent">
 
         <EditText
+            android:id="@+id/enter_player_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="Enter your name: "
             android:ems="10"
-            android:id="@+id/player_name"
             android:textSize="30sp"
             android:textColor="@color/colorPrimary"
             android:layout_gravity="center_horizontal" />
