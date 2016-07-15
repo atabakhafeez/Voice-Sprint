@@ -8,6 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 
 /**
@@ -18,7 +21,7 @@ import android.view.ViewGroup;
  * Use the {@link HighScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HighScoreFragment extends Fragment {
+public class HighScoreFragment extends Fragment implements View.OnClickListener {
     public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
 
     // the fragment initialization parameters
@@ -28,9 +31,8 @@ public class HighScoreFragment extends Fragment {
     private float firstUserScore;
     private float secondUserScore;
     private float thirdUserScore;
-    private float[] highScores = new float[] {
-            firstUserScore, secondUserScore, thirdUserScore
-    };
+    private static float[] highScores = new float[3];
+    private static String[] highScoreNames = new String[3];
 
     public HighScoreFragment() {
         // Required empty public constructor
@@ -54,8 +56,6 @@ public class HighScoreFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//        }
     }
 
     @Override
@@ -63,16 +63,25 @@ public class HighScoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_high_score, container, false);
-        updateHighScoresView();
+        v.findViewById(R.id.score_screen_dismiss).setOnClickListener(this);
+        updateHighScoresView(v);
         return v;
     }
 
-    private void updateHighScoresView() {
+    private void updateHighScoresView(View v) {
         SharedPreferences sharedPrefHighScore = getContext().getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
+        TableLayout table = (TableLayout) v.findViewById(R.id.high_score_table);
+
         for (int i = 1; i <= highScores.length; i++) {
+            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
             highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
+            TableRow row = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.attrib_row, null);
+            ((TextView)row.findViewById(R.id.name)).setText(highScoreNames[i - 1]);
+            ((TextView)row.findViewById(R.id.score)).setText(Float.toString(highScores[i - 1]));
+            table.addView(row);
         }
+        table.requestLayout();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -97,6 +106,13 @@ public class HighScoreFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (mListener != null) {
+            mListener.onScoreScreenDismissed();
+        }
     }
 
     /**

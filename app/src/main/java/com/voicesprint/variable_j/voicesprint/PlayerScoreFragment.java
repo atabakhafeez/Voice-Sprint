@@ -1,11 +1,13 @@
 package com.voicesprint.variable_j.voicesprint;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -18,14 +20,21 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class PlayerScoreFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
+
+    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_FINAL_SCORE = "finalScore";
-    private static final String ARG_UPDATE_SCORE_BOOL = "updateScoreBool";
 
-    // TODO: Rename and change types of parameters
     private float finalScore;
     private boolean updateScoreBool;
+
+    private static float[] highScores = new float[3];
+    private static String[] highScoreNames = new String[3];
+
+    private boolean scoreWillUpdate;
+    private int position;
 
     private OnFragmentInteractionListener mListener;
 
@@ -38,14 +47,12 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
      * this fragment using the provided parameters.
      *
      * @param finalScore Parameter 1.
-     * @param updateScoreBool Parameter 2.
      * @return A new instance of fragment PlayerScoreFragment.
      */
-    public static PlayerScoreFragment newInstance(float finalScore, boolean updateScoreBool) {
+    public static PlayerScoreFragment newInstance(float finalScore) {
         PlayerScoreFragment fragment = new PlayerScoreFragment();
         Bundle args = new Bundle();
         args.putFloat(ARG_FINAL_SCORE, finalScore);
-        args.putBoolean(ARG_UPDATE_SCORE_BOOL, updateScoreBool);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +62,33 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             finalScore = getArguments().getFloat(ARG_FINAL_SCORE);
-            updateScoreBool = getArguments().getBoolean(ARG_UPDATE_SCORE_BOOL);
+        }
+        scoreWillUpdate = false;
+        position = 0;
+        initHighScoreValues();
+        updateScores();
+    }
+
+    private void updateScores() {
+        for (int i = 1; i <= highScores.length; i++) {
+            if (finalScore <= highScores[i - 1]) {
+                break;
+            }
+            if (finalScore > highScores[i - 1]) {
+                position = i;
+                scoreWillUpdate = true;
+                break;
+            }
+        }
+
+    }
+
+    private void initHighScoreValues() {
+        SharedPreferences sharedPrefHighScore = getContext().getSharedPreferences(HIGH_SCORE_PREFS,
+                Context.MODE_PRIVATE);
+        for (int i = 1; i <= highScores.length; i++) {
+            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
+            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
         }
     }
 
@@ -68,7 +101,7 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
         return v;
     }
 
-    private void updateUI(View v) {
+    private boolean updateUI(View v) {
         // Display the score
         TextView score_display = (TextView) v.findViewById(R.id.score_display);
         score_display.setText(Float.toString(finalScore));
@@ -79,8 +112,11 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
         } else {
             player_message.setText(R.string.high_score_not_scored);
         }
-        v.findViewById(R.id.enter_player_name).setVisibility(View.GONE);
+
+        v.findViewById(R.id.enter_player_name).setVisibility(scoreWillUpdate ? View.VISIBLE : View.GONE);
         v.findViewById(R.id.button_check_high_scores).setOnClickListener(this);
+
+        return updateScoreBool;
     }
 
 
@@ -104,7 +140,17 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_check_high_scores) {
-            mListener.onHighScoreButtonPressed();
+
+            if (scoreWillUpdate) {
+                EditText playerNameField = (EditText) view.findViewById(R.id.enter_player_name);
+                String playerName = null;
+                if (playerNameField != null) {
+                    playerName = playerNameField.getText().toString();
+                }
+                mListener.onHighScoreButtonPressed(finalScore, playerName, position);
+            } else {
+                mListener.onHighScoreButtonPressed();
+            }
         }
     }
 
@@ -119,6 +165,8 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
+        void onHighScoreButtonPressed(float score, String name, int position);
+
         void onHighScoreButtonPressed();
     }
 }

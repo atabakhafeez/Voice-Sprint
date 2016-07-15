@@ -14,7 +14,7 @@
         android:layout_gravity="center_horizontal" />
 
     <TableLayout
-
+        android:id="@+id/high_score_table"
         android:layout_width="319dp"
         android:layout_height="wrap_content"
         android:gravity="top"
@@ -35,54 +35,6 @@
                 android:textAllCaps="true"
                 android:textColor="@color/dark_green"/>
         </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/first_place_name"
-                android:text="dummy"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/first_place_score"
-                android:text="score"
-                android:gravity="right"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimary"/>
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:id="@+id/second_place_name"
-                android:text="dummy"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/second_place_score"
-                android:text="score"
-                android:gravity="right"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimary"/>
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:id="@+id/third_place_name"
-                android:text="dummy"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/third_place_score"
-                android:text="score"
-                android:gravity="right"
-                android:padding="3dip"
-                android:textSize="30sp"
-                android:textColor="@color/colorPrimary"/>
-        </TableRow>
-
-
 
     </TableLayout>
 
