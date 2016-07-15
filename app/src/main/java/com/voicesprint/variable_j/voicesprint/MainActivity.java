@@ -32,15 +32,6 @@ HighScoreFragment.OnFragmentInteractionListener {
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                 homeMenuFragment).commit();
-//
-//        Button btnStart = (Button) findViewById(R.id.btnPlayGame);
-//        btnStart.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
-//                        gameFragment).commit();
-//            }
-//        });
     }
 
     /**

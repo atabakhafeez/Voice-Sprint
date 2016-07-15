@@ -73,13 +73,6 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
         return gamePanel;
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed() {
-//        if (mListener != null) {
-//            mListener.onGameOver();
-//        }
-//    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

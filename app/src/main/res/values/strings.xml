@@ -11,5 +11,6 @@
     <string name="gamehelper_unknown_error">Unknown error.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="high_score_scored">Congratulations!! You have a high score!!</string>
+    <string name="high_score_not_scored">Not your best try!</string>
 </resources>
