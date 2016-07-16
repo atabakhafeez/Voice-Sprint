@@ -80,7 +80,6 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
                 break;
             }
         }
-
     }
 
     private void initHighScoreValues() {

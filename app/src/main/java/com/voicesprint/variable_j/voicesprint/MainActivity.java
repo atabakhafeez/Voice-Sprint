@@ -17,17 +17,8 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
 
     public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
 
-//    private static final String HIGH_SCORE_STRING_SET = "HighScore";
-
-//    private static float finalScore;
-//
-//    private float firstUserScore;
-//    private float secondUserScore;
-//    private float thirdUserScore;
-
     private static float[] highScores = new float[3];
     private static String[] highScoreNames = new String[3];
-
 
     GameFragment gameFragment;
     HomeMenuFragment homeMenuFragment;
@@ -42,8 +33,7 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
-
+        
         SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
         for (int i = 1; i <= highScores.length; i++) {
@@ -93,37 +83,10 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
 
     @Override
     public void onGameOver(float finalScore) {
-//        this.finalScore = finalScore;
-//        boolean high_score_scored = updateScores();
-
         playerScoreFragment = PlayerScoreFragment.newInstance(finalScore);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 playerScoreFragment).commit();
     }
-
-//    private boolean updateScores() {
-//        boolean score_will_update = false;
-//        int position = 0;
-//        for (int i = 1; i <= highScores.length; i++) {
-//            if (finalScore <= highScores[i - 1]) {
-//                break;
-//            }
-//            if (finalScore > highScores[i - 1]) {
-//                position = i;
-//                score_will_update = true;
-//                break;
-//            }
-//        }
-//        if (score_will_update) {
-//            SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
-//                    Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = sharedPrefHighScore.edit();
-//            editor.putFloat("position" + position, finalScore);
-//            editor.commit();
-//        }
-//        return score_will_update;
-//    }
-
 
     @Override
     public void onGameStartButtonPressed() {
