@@ -27,6 +27,10 @@ public class HighScores {
         }
     }
 
+    public List<Score> getScores() {
+        return scores;
+    }
+
     public String toJson(){
         Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.toJson(this);
@@ -46,6 +50,10 @@ public class HighScores {
 
         public float scoreNum;
         private String scoreName;
+
+        public float getScoreNum() {
+            return scoreNum;
+        }
 
         @Override
         public int compareTo(Score score) {
