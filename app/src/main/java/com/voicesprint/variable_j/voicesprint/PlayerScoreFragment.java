@@ -22,24 +22,15 @@ import android.widget.TextView;
 public class PlayerScoreFragment extends Fragment implements View.OnClickListener {
 
     static final String TAG = "PlayerScoreFragment";
-
-    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
-    public static final String HIGH_SCORE = "HighScore";
-
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_FINAL_SCORE = "finalScore";
+    static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+    static final String HIGH_SCORE = "HighScore";
+    static final String ARG_FINAL_SCORE = "finalScore";
 
     private float finalScore;
-
-//    private static float[] highScores = new float[3];
-//    private static String[] highScoreNames = new String[3];
     private HighScores highScores;
-
     private boolean scoreWillUpdate;
-//    private int position;
 
     private OnFragmentInteractionListener mListener;
-
     private EditText playerNameField;
 
     public PlayerScoreFragment() {

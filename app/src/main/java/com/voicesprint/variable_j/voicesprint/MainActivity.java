@@ -23,9 +23,6 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
 
     private HighScores highScores;
 
-//    private static float[] highScores = new float[3];
-//    private static String[] highScoreNames = new String[3];
-
     GameFragment gameFragment;
     HomeMenuFragment homeMenuFragment;
     HighScoreFragment highScoreFragment;
@@ -40,8 +37,6 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        resetScores();
-        
         SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
         String highScoreString = sharedPrefHighScore.getString(HIGH_SCORE, null);
@@ -56,14 +51,6 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                 homeMenuFragment).commit();
-    }
-
-    private void resetScores() {
-        SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefHighScore.edit();
-        editor.putString(HIGH_SCORE, "");
-        editor.commit();
     }
 
     /**
