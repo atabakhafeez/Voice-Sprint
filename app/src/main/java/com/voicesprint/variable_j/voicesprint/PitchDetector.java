@@ -1,5 +1,7 @@
 package com.voicesprint.variable_j.voicesprint;
 
+import android.util.Log;
+
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
 import be.tarsos.dsp.io.android.AudioDispatcherFactory;
@@ -13,6 +15,8 @@ import be.tarsos.dsp.pitch.PitchProcessor;
  * Created by atabakh on 25/05/2016.
  */
 public class PitchDetector {
+
+    static final String TAG = "PitchDetector";
 
     static final float MOVEMENT_SPEED_PARAM = (float) 50.0;
 
@@ -75,7 +79,7 @@ public class PitchDetector {
                 if (scoreSumStarted) {
                     pitchSum += pitchInHz;
                 }
-                System.out.println("Pitch = " + pitchInHz);
+                Log.i(TAG, "Pitch = " + pitchInHz);
 
                 //Set vector for speed
                 //TODO: Refactor to remove coupling

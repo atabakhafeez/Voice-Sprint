@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,10 +16,15 @@ public class MainActivity extends FragmentActivity implements
         GameFragment.OnFragmentInteractionListener, HomeMenuFragment.OnFragmentInteractionListener,
 HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentInteractionListener {
 
-    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+    static final String TAG = "MainActivity";
 
-    private static float[] highScores = new float[3];
-    private static String[] highScoreNames = new String[3];
+    public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+    public static final String HIGH_SCORE = "HighScore";
+
+    private HighScores highScores;
+
+//    private static float[] highScores = new float[3];
+//    private static String[] highScoreNames = new String[3];
 
     GameFragment gameFragment;
     HomeMenuFragment homeMenuFragment;
@@ -36,10 +42,16 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
         
         SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
-        for (int i = 1; i <= highScores.length; i++) {
-            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
-            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
+        String highScoreString = sharedPrefHighScore.getString(HIGH_SCORE, null);
+        highScores = HighScores.fromJson(highScoreString);
+        if (highScores == null) {
+            Log.d("MAIN", "highScores is null");
         }
+
+//        for (int i = 1; i <= highScores.length; i++) {
+//            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
+//            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
+//        }
 
         gameFragment = GameFragment.newInstance();
         homeMenuFragment = HomeMenuFragment.newInstance();
@@ -101,15 +113,24 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
     }
 
     @Override
-    public void onHighScoreButtonPressed(float score, String name, int position) {
+    public void onHighScoreButtonPressed(float score, String name) {
+        updateScores(score, name);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                highScoreFragment).commit();
+    }
+
+    private void updateScores(float score, String name) {
+        if (highScores == null) {
+            highScores = new HighScores();
+        }
+        highScores.addScore(name, score);
+        Log.d(TAG, highScores.toJson());
+
         SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefHighScore.edit();
-        editor.putFloat("position" + position, score);
-        editor.putString("position_" + position + "_name", name);
+        editor.putString(HIGH_SCORE, highScores.toJson());
         editor.commit();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                highScoreFragment).commit();
     }
 
     @Override

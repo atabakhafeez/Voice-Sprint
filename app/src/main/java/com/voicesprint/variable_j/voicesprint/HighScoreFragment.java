@@ -2,7 +2,6 @@ package com.voicesprint.variable_j.voicesprint;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,16 +22,20 @@ import android.widget.TextView;
  */
 public class HighScoreFragment extends Fragment implements View.OnClickListener {
     public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
+    public static final String HIGH_SCORE = "HighScore";
+
 
     // the fragment initialization parameters
 
     private OnFragmentInteractionListener mListener;
 
-    private float firstUserScore;
-    private float secondUserScore;
-    private float thirdUserScore;
-    private static float[] highScores = new float[3];
-    private static String[] highScoreNames = new String[3];
+//    private float firstUserScore;
+//    private float secondUserScore;
+//    private float thirdUserScore;
+//    private static float[] highScores = new float[3];
+//    private static String[] highScoreNames = new String[3];
+
+    private HighScores highScores;
 
     public HighScoreFragment() {
         // Required empty public constructor
@@ -71,25 +74,21 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
     private void updateHighScoresView(View v) {
         SharedPreferences sharedPrefHighScore = getContext().getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
+        String highScoreString = sharedPrefHighScore.getString(HIGH_SCORE, null);
+        highScores = HighScores.fromJson(highScoreString);
         TableLayout table = (TableLayout) v.findViewById(R.id.high_score_table);
 
-        for (int i = 1; i <= highScores.length; i++) {
-            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
-            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
-            TableRow row = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.attrib_row, null);
-            ((TextView)row.findViewById(R.id.name)).setText(highScoreNames[i - 1]);
-            ((TextView)row.findViewById(R.id.score)).setText(Float.toString(highScores[i - 1]));
-            table.addView(row);
+        if (highScores != null) {
+            for (HighScores.Score score: highScores.getScores()) {
+                TableRow row = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.attrib_row, null);
+                ((TextView)row.findViewById(R.id.name)).setText(score.getScoreName());
+                ((TextView)row.findViewById(R.id.score)).setText(Float.toString(score.getScoreNum()));
+                table.addView(row);
+            }
+            table.requestLayout();
         }
-        table.requestLayout();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onScoreScreenDismissed();
-        }
-    }
 
     @Override
     public void onAttach(Context context) {

@@ -18,6 +18,26 @@ public class HighScores {
         scores = new ArrayList<>();
     }
 
+    public int getSize() {
+        return scores.size();
+    }
+
+    public Score getScoreByIndex(int i) {
+        return scores.get(i);
+    }
+
+    public boolean willUpdateScore(float scoreNum) {
+        boolean score_updated = false;
+        if (scores.size() < 3) {
+            score_updated = true;
+        } else {
+            if (scores.get(2).getScoreNum() < scoreNum) {
+                score_updated = true;
+            }
+        }
+        return score_updated;
+    }
+
     public void addScore(String name, float scoreNum) {
         Score newScore = new Score(scoreNum, name);
         scores.add(newScore);
@@ -53,6 +73,10 @@ public class HighScores {
 
         public float getScoreNum() {
             return scoreNum;
+        }
+
+        public String getScoreName() {
+            return scoreName;
         }
 
         @Override
