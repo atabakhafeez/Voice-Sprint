@@ -72,37 +72,13 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
         } else {
             scoreWillUpdate = true;
         }
-
-//        position = 0;
-//        initHighScoreValues();
-//        updateScores();
     }
-
-//    private void updateScores() {
-//        scoreWillUpdate =
-//
-//        for (int i = 1; i <= highScores.length; i++) {
-//            if (finalScore <= highScores[i - 1]) {
-//                break;
-//            }
-//            if (finalScore > highScores[i - 1]) {
-//                position = i;
-//                scoreWillUpdate = true;
-//                break;
-//            }
-//        }
-//    }
 
     private void initHighScoreValues() {
         SharedPreferences sharedPrefHighScore = getContext().getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
         String highScoreString = sharedPrefHighScore.getString(HIGH_SCORE, null);
         highScores = HighScores.fromJson(highScoreString);
-
-//        for (int i = 1; i <= highScores.length; i++) {
-//            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
-//            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
-//        }
     }
 
     @Override

@@ -18,14 +18,6 @@ public class HighScores {
         scores = new ArrayList<>();
     }
 
-    public int getSize() {
-        return scores.size();
-    }
-
-    public Score getScoreByIndex(int i) {
-        return scores.get(i);
-    }
-
     public boolean willUpdateScore(float scoreNum) {
         boolean score_updated = false;
         if (scores.size() < 3) {

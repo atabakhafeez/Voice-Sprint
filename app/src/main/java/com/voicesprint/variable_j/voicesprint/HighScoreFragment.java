@@ -49,10 +49,6 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
      */
     // TODO: Rename and change types and number of parameters
     public static HighScoreFragment newInstance() {
-//        HighScoreFragment fragment = new HighScoreFragment();
-//        Bundle args = new Bundle();
-//        args.putString(FINAL_SCORE, score);
-//        fragment.setArguments(args);
         return new HighScoreFragment();
     }
 

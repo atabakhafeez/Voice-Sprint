@@ -48,11 +48,6 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
             Log.d("MAIN", "highScores is null");
         }
 
-//        for (int i = 1; i <= highScores.length; i++) {
-//            highScores[i - 1] = sharedPrefHighScore.getFloat("position" + i, 0.0f);
-//            highScoreNames[i - 1] = sharedPrefHighScore.getString("position_" + i + "_name", null);
-//        }
-
         gameFragment = GameFragment.newInstance();
         homeMenuFragment = HomeMenuFragment.newInstance();
         highScoreFragment = HighScoreFragment.newInstance();
