@@ -19,15 +19,15 @@ public class HighScores {
     }
 
     public boolean willUpdateScore(float scoreNum) {
-        boolean score_updated = false;
+        boolean score_will_update = false;
         if (scores.size() < 3) {
-            score_updated = true;
+            score_will_update = true;
         } else {
             if (scores.get(2).getScoreNum() < scoreNum) {
-                score_updated = true;
+                score_will_update = true;
             }
         }
-        return score_updated;
+        return score_will_update;
     }
 
     public void addScore(String name, float scoreNum) {

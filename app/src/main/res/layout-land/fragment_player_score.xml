@@ -4,7 +4,6 @@
     android:id="@+id/screen_win"
     android:gravity="center"
     android:paddingTop="20dp"
-    android:paddingBottom="20dp"
     android:orientation="vertical">
 
     <TextView
@@ -44,16 +43,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/enter_player_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Enter your name: "
-            android:ems="10"
-            android:textSize="30sp"
-            android:textColor="@color/colorPrimary"
-            android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:id="@+id/player_name_box"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="254dp"
+                android:layout_height="59dp"
+                android:text="Enter your name:"
+                android:ems="10"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/enter_player_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
 
         <Button
             android:layout_width="385dp"
@@ -64,7 +78,6 @@
             android:textColor="@color/colorAccent"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
-
 
 </LinearLayout>
 

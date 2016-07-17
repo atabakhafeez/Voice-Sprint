@@ -1,13 +1,87 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.voicesprint.variable_j.voicesprint.PlayerScoreFragment">
+    android:id="@+id/screen_win"
+    android:gravity="center"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="empty" />
+        android:id="@+id/player_score_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Congratulations!!"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"/>
 
-</FrameLayout>
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your score:"
+            android:layout_marginBottom="10dp"
+            android:textSize="40sp"
+            android:textColor="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/score_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60sp"
+            android:text="50000"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/player_name_box"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="254dp"
+                android:layout_height="59dp"
+                android:text="Enter your name:"
+                android:ems="10"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_horizontal" />
+
+            <EditText
+                android:id="@+id/enter_player_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:textSize="30sp"
+                android:textColor="@color/colorPrimary"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_width="385dp"
+            android:layout_height="59dp"
+            android:text="Check High Scores"
+            android:id="@+id/button_check_high_scores"
+            android:textSize="25sp"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+
+</LinearLayout>
+

@@ -40,6 +40,8 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
 
     private OnFragmentInteractionListener mListener;
 
+    private EditText playerNameField;
+
     public PlayerScoreFragment() {
         // Required empty public constructor
     }
@@ -96,13 +98,13 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
         score_display.setText(Float.toString(finalScore));
         // Show a message
         TextView player_message = (TextView) v.findViewById(R.id.player_score_message);
+        playerNameField = (EditText) v.findViewById(R.id.enter_player_name);
         if (scoreWillUpdate) {
             player_message.setText(R.string.high_score_scored);
         } else {
             player_message.setText(R.string.high_score_not_scored);
+            v.findViewById(R.id.player_name_box).setVisibility(View.GONE);
         }
-
-        v.findViewById(R.id.enter_player_name).setVisibility(scoreWillUpdate ? View.VISIBLE : View.GONE);
         v.findViewById(R.id.button_check_high_scores).setOnClickListener(this);
     }
 
@@ -127,9 +129,7 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_check_high_scores) {
-
             if (scoreWillUpdate) {
-                EditText playerNameField = (EditText) view.findViewById(R.id.enter_player_name);
                 String playerName = null;
                 if (playerNameField != null) {
                     playerName = playerNameField.getText().toString();

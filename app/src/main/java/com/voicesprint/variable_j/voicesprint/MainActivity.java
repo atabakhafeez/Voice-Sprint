@@ -39,6 +39,8 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        resetScores();
         
         SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
                 Context.MODE_PRIVATE);
@@ -54,6 +56,14 @@ HighScoreFragment.OnFragmentInteractionListener, PlayerScoreFragment.OnFragmentI
 
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
                 homeMenuFragment).commit();
+    }
+
+    private void resetScores() {
+        SharedPreferences sharedPrefHighScore = getSharedPreferences(HIGH_SCORE_PREFS,
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefHighScore.edit();
+        editor.putString(HIGH_SCORE, "");
+        editor.commit();
     }
 
     /**
