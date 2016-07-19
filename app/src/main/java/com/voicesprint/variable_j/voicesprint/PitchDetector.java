@@ -47,7 +47,9 @@ public class PitchDetector {
      */
     private boolean noSound;
 
-    boolean scoreSumStarted;
+    private boolean scoreSumStarted;
+
+    private boolean running;
 
     /**
      * Constructor for PitchDetector
@@ -57,6 +59,7 @@ public class PitchDetector {
         this.gamePanel = gamePanel;
         pitchSum = 0;
         scoreSumStarted = false;
+        running = false;
         run();
     }
 
@@ -105,4 +108,12 @@ public class PitchDetector {
     }
 
     public float getPitchSum() { return pitchSum; }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    public boolean isRunning() {
+        return running;
+    }
 }

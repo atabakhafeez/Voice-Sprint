@@ -89,6 +89,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                 //stop the main thread
                 thread.join();
                 //stop the thread for the pitch detection
+                pitchDetector.setRunning(false);
                 pitchDetector.stop();
 
             } catch(InterruptedException e) {
@@ -115,7 +116,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
         //start thread for pitch detection
         pitchDetector = new PitchDetector(this);
-
+        pitchDetector.setRunning(true);
     }
 
     /**
@@ -151,8 +152,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             canvas.scale(scaleFactorX, scaleFactorY);
             bg.draw(canvas);
             //draw superman and frequency on the background
-            player.draw(canvas, pitchDetector.getPitchInHz());
-            mListener.onPitchDetected(pitchDetector.getPitchInHz(), pitchDetector.getPitchSum());
+            if (pitchDetector.isRunning()) {
+                player.draw(canvas, pitchDetector.getPitchInHz());
+                mListener.onPitchDetected(pitchDetector.getPitchInHz(), pitchDetector.getPitchSum());
+            }
+
             canvas.restoreToCount(savedState);
         }
     }

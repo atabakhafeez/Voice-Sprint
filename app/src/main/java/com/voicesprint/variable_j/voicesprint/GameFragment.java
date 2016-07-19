@@ -17,22 +17,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class GameFragment extends Fragment implements GamePanel.Listener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
 
     static float MINIMUM_PITCH = 100;
 
     boolean scoreSumStarted;
 
-    private float finalScore;
-
-    private OnFragmentInteractionListener mListener;
+     private OnFragmentInteractionListener mListener;
 
     public GameFragment() {
         // Required empty public constructor
@@ -44,23 +34,13 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
      *
      * @return A new instance of fragment GameFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static GameFragment newInstance() {
-//        GameFragment fragment = new GameFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args)
         return new GameFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
@@ -112,7 +92,6 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onGameOver(float finalScore);
     }
 }
