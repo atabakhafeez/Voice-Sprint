@@ -24,17 +24,7 @@ public class HighScoreFragment extends Fragment implements View.OnClickListener 
     public static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
     public static final String HIGH_SCORE = "HighScore";
 
-
-    // the fragment initialization parameters
-
     private OnFragmentInteractionListener mListener;
-
-//    private float firstUserScore;
-//    private float secondUserScore;
-//    private float thirdUserScore;
-//    private static float[] highScores = new float[3];
-//    private static String[] highScoreNames = new String[3];
-
     private HighScores highScores;
 
     public HighScoreFragment() {
