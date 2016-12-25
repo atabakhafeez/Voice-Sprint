@@ -21,6 +21,7 @@ import android.widget.TextView;
  */
 public class PlayerScoreFragment extends Fragment implements View.OnClickListener {
 
+
     static final String TAG = "PlayerScoreFragment";
     static final String HIGH_SCORE_PREFS = "HighScorePrefsName";
     static final String HIGH_SCORE = "HighScore";
@@ -34,6 +35,7 @@ public class PlayerScoreFragment extends Fragment implements View.OnClickListene
     private EditText playerNameField;
 
     public PlayerScoreFragment() {
+
         // Required empty public constructor
     }
 

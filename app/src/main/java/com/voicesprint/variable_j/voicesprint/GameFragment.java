@@ -19,10 +19,13 @@ import android.view.ViewGroup;
 public class GameFragment extends Fragment implements GamePanel.Listener {
 
     static float MINIMUM_PITCH = 100;
+    static int END_GAME_THRESHOLD = 3;
 
     boolean scoreSumStarted;
+    private boolean endGameStart;
+    private int endGameCount;
 
-     private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     public GameFragment() {
         // Required empty public constructor
@@ -50,6 +53,8 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
         GamePanel gamePanel = new GamePanel(getContext());
         gamePanel.setListener(this);
         scoreSumStarted = false;
+        endGameStart = false;
+        endGameCount = 0;
         return gamePanel;
     }
 
@@ -76,8 +81,18 @@ public class GameFragment extends Fragment implements GamePanel.Listener {
             scoreSumStarted = true;
         }
 
-        if (scoreSumStarted && pitch < MINIMUM_PITCH) {
-            mListener.onGameOver(pitchSum);
+        // When the pitch falls below a threshold, let the game run till there is consecutive
+        //
+        if (!endGameStart && scoreSumStarted && pitch < MINIMUM_PITCH) {
+            endGameStart = true;
+            //mListener.onGameOver(pitchSum);
+        } else if (endGameStart && scoreSumStarted && pitch < MINIMUM_PITCH) {
+            endGameCount++;
+            if (endGameCount > END_GAME_THRESHOLD) {
+                mListener.onGameOver(pitchSum);
+            }
+        } else if (endGameStart && scoreSumStarted && pitch >= MINIMUM_PITCH) {
+            endGameCount = 0;
         }
     }
 
