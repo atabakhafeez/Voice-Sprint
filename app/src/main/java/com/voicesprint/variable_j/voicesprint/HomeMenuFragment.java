@@ -47,6 +47,7 @@ public class HomeMenuFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home_menu, container, false);
         v.findViewById(R.id.btnPlayGame).setOnClickListener(this);
+        v.findViewById(R.id.btnTestItOut).setOnClickListener(this);
         return v;
     }
     
@@ -87,5 +88,6 @@ public class HomeMenuFragment extends Fragment implements View.OnClickListener {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onGameStartButtonPressed();
+        void onTestItOutButtonPressed();
     }
 }
